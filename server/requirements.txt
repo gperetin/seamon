@@ -3,3 +3,4 @@ pyhamcrest
 requests
 nose
 rednose
+flask
