@@ -20,4 +20,8 @@ class Plugin():
 
         return dict_data
 
-print Plugin.data()
+def main():
+    print Plugin.data()
+
+if __name__ == '__main__':
+    main()
