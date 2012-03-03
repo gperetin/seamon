@@ -1,18 +1,17 @@
-class NodeRepository(object):
-    nodes = []
+from db.session import session
+from db import tables
+from node import Node
 
+class NodeRepository(object):
     @staticmethod
     def save(node):
-        NodeRepository.nodes.append(node)
+        session.add(node)
+        session.commit()
 
     @staticmethod
     def all():
-        return NodeRepository.nodes
+        return session.query(Node).all()
 
     @staticmethod
     def by_name(node_name):
-        for node in NodeRepository.nodes:
-            if node.name == node_name:
-                return node
-        
-        return None
+        return session.query(Node).filter(Node.name == node_name).one()
