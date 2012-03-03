@@ -1,3 +1,6 @@
 mock
 pyhamcrest
 requests
+nose
+rednose
+flask

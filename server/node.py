@@ -1,5 +1,6 @@
 class Node(object):
-    def __init__(self, ip_address, port):
+    def __init__(self, name, ip_address, port):
+        self.name = name
         self.ip_address = ip_address
         self.port = port
 

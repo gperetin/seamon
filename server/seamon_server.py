@@ -1,14 +1,17 @@
 from data_collector import DataCollector
+from node import Node
+from node_repository import NodeRepository
 
 class SeamonServer(object):
-    nodes = []
-
-    def add_node(self, node):
-        self.nodes.append(node)
+    def add_node(self, name, ip_address, port):
+        NodeRepository.save(Node(name, ip_address, port))
 
     def list_nodes(self):
-        return self.nodes
+        return NodeRepository.nodes
 
-    def get_data_from_nodes(self):
-        for node in self.nodes:
-            DataCollector.get_from_node(node)
+    def get_node_info(self, node_name):
+        node = NodeRepository.by_name(node_name)
+        return DataCollector.get_node_info(node)
+
+    def node_by_name(self, name):
+        return NodeRepository.by_name(name)
