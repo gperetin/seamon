@@ -27,4 +27,3 @@ class PluginHandlerTest(BaseTestCase):
         plugins_list.return_value = [plugin]
         PluginHandler.get_data_from_all_plugins()
         _get_plugin_data.assert_called_with(plugin)
-
