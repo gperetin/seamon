@@ -13,18 +13,14 @@ SAMPLE_NODE_DATA = {
     }}
 
 class DataCollectorTest(unittest.TestCase):
-    @patch("data_collector.requests.get", return_value = SAMPLE_NODE_DATA)
+    @patch("server.data_collector.requests.get", return_value = SAMPLE_NODE_DATA)
     def test_gets_data_from_node(self, node_data):
-        data = DataCollector.get_from_node(Mock())
+        data = DataCollector.get_node_info(Mock())
         assert_that(data, is_(SAMPLE_NODE_DATA))
 
-    @patch("data_collector.requests.get")
+    @patch("server.data_collector.requests.get")
     def test_makes_get_request_to_node_fullpath(self, request):
         some_path = "http://localhost:1231"
         node = Mock(**{"full_path.return_value": some_path})
-        data = DataCollector.get_from_node(node)
+        data = DataCollector.get_node_info(node)
         request.assert_called_with(some_path)
-
-
-if __name__ == "__main__":
-    unittest.main()

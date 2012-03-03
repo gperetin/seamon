@@ -11,8 +11,9 @@ class SeamonServer(object):
     def list_nodes(self):
         return self.nodes
 
-    def get_node_info(self, node):
-        return DataCollector.get_from_node(node)
+    def get_node_info(self, node_name):
+        node = self.node_by_name(node_name)
+        return DataCollector.get_node_info(node)
 
     def node_by_name(self, name):
         for node in self.nodes:

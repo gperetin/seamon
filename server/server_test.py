@@ -22,15 +22,11 @@ class ServerTest(unittest.TestCase):
         assert_that(node.ip_address, is_("192.168.5.5"))
         assert_that(node.port, is_(22312))
 
-#     def test_gets_node_info_from_data_collector(self):
-#         server = SeamonServer()
-#         data = server.get_node_info("node1")
+    @patch("server.data_collector.DataCollector.get_node_info")
+    def test_gets_node_info_from_data_collector(self, data_collector):
+        self.server.add_node("node1", "192.168.5.5", 22312)
+        data = self.server.get_node_info("node1")
+        node = self.server.node_by_name("node1")
+        data_collector.assert_called_with(node)
 
 
-
-    # def test_returns_none_for_nonexistent_node(self):
-    #     pass
-
-
-# if __name__ == "__main__":
-#     unittest.main()
