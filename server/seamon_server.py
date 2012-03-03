@@ -6,15 +6,10 @@ class SeamonServer(object):
         self.nodes = []
 
     def add_node(self, name, ip_address, port):
-        print "adding node "+ name
         self.nodes.append(Node(name, ip_address, port))
 
     def list_nodes(self):
         return self.nodes
-
-    # def get_data_from_nodes(self):
-    #     for node in self.nodes:
-    #         DataCollector.get_from_node(node)
 
     def get_node_info(self, node):
         return DataCollector.get_from_node(node)
