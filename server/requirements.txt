@@ -5,3 +5,4 @@ nose
 rednose
 flask
 sqlalchemy
+fabric
