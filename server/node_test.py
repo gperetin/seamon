@@ -9,5 +9,10 @@ class NodeTest(unittest.TestCase):
         assert_that(node.ip_address, "192.168.5.5")
         assert_that(node.port, is_(2223))
 
+    def test_node_full_path(self):
+        node = Node("192.168.5.5", 2223)
+        full_path = "http://192.168.5.5:2223"
+        assert_that(node.full_path(), is_(full_path))
+
 if __name__ == "__main__":
     unittest.main()
