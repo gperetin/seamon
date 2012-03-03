@@ -3,10 +3,12 @@ from hamcrest import *
 from mock import patch, Mock
 
 from seamon_server import SeamonServer
+from node_repository import NodeRepository
 
 class ServerTest(unittest.TestCase):
     def setUp(self):
         self.server = SeamonServer()
+        NodeRepository.nodes = []
 
     def test_has_list_of_nodes(self):
         self.server.add_node("node1", "192.168.5.2", 2222)
