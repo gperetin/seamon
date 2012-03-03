@@ -1,0 +1,5 @@
+*.pyc
+*.pickle
+*.swp
+debug.log
+*.sublime-project
