@@ -20,6 +20,11 @@ class PluginHandlerTest(BaseTestCase):
         data = PluginHandler._get_plugin_data('memory')
         self.assertTrue('memory_total' in data)
 
+    def test_strip_endline_from_output(self):
+        # TODO: sedlanje :); treba mockat subprocess
+	data = PluginHandler._get_plugin_data('hostname')
+        self.assertFalse('\n' in data)
+
     @patch.object(PluginHandler, 'plugins_list')
     @patch.object(PluginHandler, '_get_plugin_data')
     def test_node_collect_data_from_all_plugins(self, _get_plugin_data, plugins_list):

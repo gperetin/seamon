@@ -16,6 +16,7 @@ class PluginHandler(object):
     def _get_plugin_data(plugin):
         try:
             output = subprocess.check_output('%s/plugins/%s.py' % (os.getcwd(), plugin))
+            output = output.strip()
         except:
             output = False
         return output
