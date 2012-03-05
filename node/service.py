@@ -17,7 +17,7 @@ class SeamonHTTPHandler(BaseHTTPRequestHandler):
 def main():
     try:
         server = HTTPServer(('', 7666), SeamonHTTPHandler)
-        print 'Seamon HTTP Serivce Started'
+        print 'Seamon HTTP Service Started'
         server.serve_forever()
     except KeyboardInterrupt:
         print '^C received, shutting down server'

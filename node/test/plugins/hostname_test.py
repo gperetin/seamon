@@ -21,7 +21,7 @@ class HostnameTest(BaseTestCase):
         filemock.assert_called_with('/proc/sys/kernel/hostname')
 
     @patch('__builtin__.file')
-    def test_plugin_correct_pase_hostname_file(self, filemock):
+    def test_plugin_correct_parse_hostname_file(self, filemock):
         data = self.set_up_mock(filemock)
         self.assertEqual(data, 'test_hostname')
 
