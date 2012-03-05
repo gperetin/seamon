@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import re
+import json
 
 class Plugin():
     @staticmethod
@@ -17,7 +18,7 @@ class Plugin():
         return dict_data
 
 def main():
-    print Plugin.data()
+    print json.dumps(Plugin.data())
 
 if __name__ == '__main__':
     main()

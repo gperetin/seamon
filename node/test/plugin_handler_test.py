@@ -28,7 +28,7 @@ class PluginHandlerTest(BaseTestCase):
     @patch.object(PluginHandler, 'plugins_list')
     @patch.object(PluginHandler, '_get_plugin_data')
     def test_node_collect_data_from_all_plugins(self, _get_plugin_data, plugins_list):
-        plugin = Mock()
-        plugins_list.return_value = [plugin]
+        plugins_list.return_value = ['test1']
+	_get_plugin_data.return_value = 111
         PluginHandler.get_data_from_all_plugins()
-        _get_plugin_data.assert_called_with(plugin)
+        _get_plugin_data.assert_called_with('test1')

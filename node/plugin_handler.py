@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import subprocess
+import json
 
 class PluginHandler(object):
     @staticmethod
@@ -15,8 +16,8 @@ class PluginHandler(object):
     @staticmethod
     def _get_plugin_data(plugin):
         try:
-            output = subprocess.check_output('%s/plugins/%s.py' % (os.getcwd(), plugin))
-            output = output.strip()
+            output = subprocess.check_output('%s/plugins/%s.py' % (os.getcwd(), plugin)).strip()
+	    output = json.loads(output)
         except:
             output = False
         return output
@@ -28,4 +29,4 @@ class PluginHandler(object):
             plugin_data = PluginHandler._get_plugin_data(plugin)
             if not plugin_data == False:
                 data.update({plugin: plugin_data})
-        return data
+        return json.dumps(data)

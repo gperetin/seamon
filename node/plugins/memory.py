@@ -1,11 +1,12 @@
 #!/usr/bin/python
 import re
+import json
 
 class Plugin():
     @staticmethod
     def data():
         fs = file("/proc/meminfo")
-        data = fs.read()
+        data = fs.read().strip()
         data = data.replace('\n', ' ')
 
         reg_data = re.match(r"(.*)MemTotal:\s+(?P<memory_total>\d+)\s+kB", data)
@@ -21,7 +22,7 @@ class Plugin():
         return dict_data
 
 def main():
-    print Plugin.data()
+    print json.dumps(Plugin.data())
 
 if __name__ == '__main__':
     main()
