@@ -1,19 +1,19 @@
 #!/usr/bin/python
-import re
 import json
 
 class Plugin():
     @staticmethod
     def data():
         fs = file("/proc/loadavg")
-        data = fs.read()
-        data = data.replace('\n', ' ')
+        data = fs.readline().strip()
+        load_1, load_5, load_15, a, b = data.split()
+        fs.close()
 
-        reg_data = re.match(r"(?P<load_1>[\d.]*)\s(?P<load_5>[\d.]*)\s(?P<load_15>[\d.]*)\s+(.*)", data)
-        dict_data = reg_data.groupdict()
-
-        for key in dict_data:
-            dict_data[key] = float(dict_data[key])
+        dict_data = {
+            'load_1': float(load_1),
+            'load_5': float(load_5),
+            'load_15': float(load_15)
+        }
 
         return dict_data
 

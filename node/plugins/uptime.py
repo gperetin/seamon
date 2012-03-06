@@ -6,9 +6,10 @@ class Plugin():
     def data():
         fs = file("/proc/uptime")
         data = fs.readline().strip()
-	data = float(min(data.split(' ')))
+        data = float(min(data.split(' ')))
+        fs.close()
         
-	return data
+        return data
 
 def main():
     print json.dumps(Plugin.data())

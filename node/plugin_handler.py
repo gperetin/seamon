@@ -17,7 +17,7 @@ class PluginHandler(object):
     def _get_plugin_data(plugin):
         try:
             output = subprocess.check_output('%s/plugins/%s.py' % (os.getcwd(), plugin)).strip()
-	    output = json.loads(output)
+            output = json.loads(output)
         except:
             output = False
         return output

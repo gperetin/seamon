@@ -6,9 +6,9 @@ class Plugin():
     def data():
         fs = file("/proc/sys/kernel/hostname")
         data = fs.readline().strip()
-	data = data.replace('\n', ' ')
+        fs.close()
         
-	return data
+        return data
 
 def main():
     print json.dumps(Plugin.data())

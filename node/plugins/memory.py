@@ -8,6 +8,7 @@ class Plugin():
         fs = file("/proc/meminfo")
         data = fs.read().strip()
         data = data.replace('\n', ' ')
+        fs.close()
 
         reg_data = re.match(r"(.*)MemTotal:\s+(?P<memory_total>\d+)\s+kB", data)
         dict_data = reg_data.groupdict()

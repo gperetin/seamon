@@ -8,7 +8,7 @@ class CPUTest(BaseTestCase):
     def set_up_mock(self, filemock):
         fs_mock = Mock()
         filemock.return_value = fs_mock
-        fs_mock.read.return_value = '0.12 0.16 0.23 1/123 3444'
+        fs_mock.readline.return_value = '0.12 0.16 0.23 1/123 3444'
         data = Plugin.data()
         return data
 
@@ -16,7 +16,7 @@ class CPUTest(BaseTestCase):
     def test_plugin_open_loadavg(self, filemock):
         fs_mock = Mock()
         filemock.return_value = fs_mock
-        fs_mock.read.return_value = '0.12 0.16 0.23 1/123 3444'
+        fs_mock.readline.return_value = '0.12 0.16 0.23 1/123 3444'
         Plugin.data()
         filemock.assert_called_with('/proc/loadavg')
 
