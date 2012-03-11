@@ -1,13 +1,11 @@
 #!/usr/bin/python
 import json
+import os
 
 class Plugin():
     @staticmethod
     def data():
-        fs = file("/proc/loadavg")
-        data = fs.readline().strip()
-        load_1, load_5, load_15, a, b = data.split()
-        fs.close()
+        load_1, load_5, load_15 = os.getloadavg()
 
         dict_data = {
             'load_1': float(load_1),
