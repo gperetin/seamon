@@ -24,5 +24,19 @@ class ServerTest(unittest.TestCase):
                                                 node_repository):
         node = Mock()
         node_repository.by_name.return_value = node
-        self.server.get_node_info("node1")
+        self.server.get_node_stats("node1")
         data_collector.get_node_info.assert_called_with(node)
+
+    @patch("server.seamon_server.DataCollector")
+    @patch("server.seamon_server.NodeRepository")
+    @patch("server.seamon_server.StatsRepository")
+    def test_stores_data_it_gets_from_node(self, 
+                                           stats_repository, 
+                                           node_repository, 
+                                           data_collector):
+        data = Mock()
+        node = Mock()
+        node_repository.by_name.return_value = node
+        data_collector.get_node_info.return_value = data
+        self.server.get_node_stats("asd")
+        stats_repository.save_for_node.assert_called_once_with(node, data)

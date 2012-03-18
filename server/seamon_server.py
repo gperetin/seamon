@@ -1,6 +1,7 @@
 from data_collector import DataCollector
 from node import Node
 from node_repository import NodeRepository
+from stats_repository import StatsRepository
 
 class SeamonServer(object):
     def add_node(self, name, ip_address, port):
@@ -9,9 +10,10 @@ class SeamonServer(object):
     def list_nodes(self):
         return NodeRepository.all()
 
-    def get_node_info(self, node_name):
+    def get_node_stats(self, node_name):
         node = NodeRepository.by_name(node_name)
-        return DataCollector.get_node_info(node)
+        data = DataCollector.get_node_info(node)
+        StatsRepository.save_for_node(node, data)
 
     def node_by_name(self, name):
         return NodeRepository.by_name(name)
