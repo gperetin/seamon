@@ -28,7 +28,8 @@ class StatsRepositoryTest(unittest.TestCase):
             "hostname": "haxbox"
         }
 
-        node = Node("prvi", "1231123", 1232)
+        node = Node(name="prvi", ip_address="1231123", port=1232)
+        # TODO: fix this, implement IDs in mongo or use name as key
         StatsRepository.save_for_node(1, data, datetime.datetime.now())
 
         stats = StatsRepository.get_for_node(1)

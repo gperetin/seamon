@@ -6,7 +6,7 @@ from stats_repository import StatsRepository
 class SeamonServer(object):
     @staticmethod
     def add_node(name, ip_address, port):
-        NodeRepository.save(Node(name, ip_address, port))
+        NodeRepository.save(Node(name=name, ip_address=ip_address, port=port))
 
     @staticmethod
     def list_nodes():

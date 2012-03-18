@@ -1,4 +1,5 @@
 from pymongo import Connection
+# TODO: extract to config
 connection = Connection('127.0.0.1', 27017)
 db = connection.seamon
 
