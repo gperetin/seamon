@@ -1,4 +1,13 @@
-- CPU plugin
-- disk plugin
-- integrate node and server
-- client with simple JS refreshing
+Client
+- get data from server
+- page to add nodes
+- disk stats
+
+Node
+- run as deamon?
+
+Server
+- disk stats
+- check what is best solution to collect data from nodes periodically
+- define how to deal with IDs in mongo db
+
