@@ -3,4 +3,4 @@
 *.swp
 debug.log
 *.sublime-project
-seamon.db
+server/db/seamon.db
