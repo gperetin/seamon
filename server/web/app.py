@@ -22,5 +22,12 @@ def cpu_stats():
         s["timestamp"] = s["timestamp"].isoformat()
     return json.dumps(stats)
 
+@app.route("/stats/memory", methods=['GET'])
+def memory_stats():
+    stats = StatsRepository.get_memory_stats()
+    for s in stats:
+        s["timestamp"] = s["timestamp"].isoformat()
+    return json.dumps(stats)
+
 if __name__ == "__main__":
     app.run(debug=True)

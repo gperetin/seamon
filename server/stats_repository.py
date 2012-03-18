@@ -18,3 +18,9 @@ class StatsRepository(object):
         stats = db.nodes.data.find({"cpu":{"$exists":True}}, {
             "cpu":1, "timestamp":1, "node_id":1, "_id":0})
         return list(stats)
+
+    @staticmethod
+    def get_memory_stats():
+        stats = db.nodes.data.find({"memory":{"$exists":True}}, {
+            "memory":1, "timestamp":1, "node_id":1, "_id":0})
+        return list(stats)
