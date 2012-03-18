@@ -7,7 +7,7 @@ class SeamonServer(object):
         NodeRepository.save(Node(name, ip_address, port))
 
     def list_nodes(self):
-        return NodeRepository.nodes
+        return NodeRepository.all()
 
     def get_node_info(self, node_name):
         node = NodeRepository.by_name(node_name)
