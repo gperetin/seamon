@@ -10,13 +10,16 @@ class PluginHandler(object):
         ret_val = []
         for filename in list_dir:
             if ((filename.endswith('.py')) and not filename == '__init__.py'):
-                ret_val.append(os.path.splitext(filename)[0])     
+                ret_val.append(os.path.splitext(filename)[0])
         return ret_val
 
     @staticmethod
     def _get_plugin_data(plugin):
         try:
-            output = subprocess.check_output('%s/plugins/%s.py' % (os.getcwd(), plugin)).strip()
+            # TODO: maybe extract this to some config
+            # currently, plugins dir MUST be in same dir as plugin_handler
+            this_dir = os.path.dirname(__file__)
+            output = subprocess.check_output('%s/plugins/%s.py' % (this_dir, plugin)).strip()
             output = json.loads(output)
         except:
             output = False
