@@ -1,4 +1,4 @@
-import unittest
+import unittest, datetime
 
 from stats_repository import StatsRepository
 from node import Node
@@ -29,8 +29,18 @@ class StatsRepositoryTest(unittest.TestCase):
         }
 
         node = Node("prvi", "1231123", 1232)
-        StatsRepository.save_for_node(1, data)
+        StatsRepository.save_for_node(1, data, datetime.datetime.now())
 
         stats = StatsRepository.get_for_node(1)
         self.assertEquals(4028460, stats[0]["disk"][0]["available"])
         self.assertEquals("haxbox", stats[0]["hostname"])
+
+    def test_get_cpu_stats_returns_cpu_data_for_all_nodes(self):
+        n1_data = {"cpu":{"load_1":0.12, "load_5":0.16, "load_15":0.2}}
+        n2_data = {"cpu":{"load_1":0.12, "load_5":0.16, "load_15":0.2}}
+        StatsRepository.save_for_node(1, n1_data, datetime.datetime.now())
+        StatsRepository.save_for_node(2, n2_data, datetime.datetime.now())
+
+        data = StatsRepository.get_cpu_stats()
+        self.assertEquals(data[0]["cpu"], n1_data["cpu"])
+        self.assertEquals(data[1]["cpu"], n2_data["cpu"])
