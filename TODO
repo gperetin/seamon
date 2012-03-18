@@ -2,6 +2,8 @@ Client
 - get data from server
 - page to add nodes
 - disk stats
+- node info page 
+    - show general stats such as node name, ip address, hostname, uptime, total disk, total ram, # of cpu cores, etc.
 
 Node
 - run as deamon?
@@ -10,4 +12,5 @@ Server
 - disk stats
 - check what is best solution to collect data from nodes periodically
 - define how to deal with IDs in mongo db
+- node info page data
 
